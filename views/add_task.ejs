@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title> 前端管理系统-新建任务 </title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/admin-temp/css/vendor.css">
+		<link rel="stylesheet" href="/css/bootstrap-datetimepicker.css">
+		<script src="/js/theme.js"></script>
+		<style>
+			.tab-content {
+				padding: 0 !important;
+				margin-top: 5px;
+			}
+			
+			.card {
+				height: 886px;
+			}
+			
+			body {
+				font-family: '微软雅黑'
+			}
+			
+			.form-horizontal .form-group {
+				margin-right: 15px;
+				margin-left: 15px;
+			}
+		</style>
+		<script type="text/javascript">
+			var user = {
+				username: '<%=userData.name %>',
+				loginname: '<%=userData.username %>',
+				userId: <%=userData.id %>,
+				photo: '<%=userData.photo %>',
+				role: <%=userData.role %>
+			};
+			var superAdmin = {
+				username: '<%=superAdmin.name %>',
+				userId: <%=superAdmin.id %>,
+				loginname: '<%=superAdmin.username%>',
+				role: <%=superAdmin.role %>
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="main-wrapper">
+			<div class="app" id="app">
+				<% include layout/_header %>
+				<% include layout/_sidebar %>
+				<article class="content responsive-tables-page">
+					<section class="section">
+						<div class="row sameheight-container">
+							<div class="card card-block sameheight-item">
+								<div class="title-block">
+									<h3 class="title">新建任务</h3>
+								</div>
+								<form role="form" id="addTaskForm" class="form-horizontal" onsubmit="return false;">
+									<div class="form-group">
+										<label for="taskName" class="form-control-label">任务名称</label>
+										<input type="text" class="form-control boxed" name="taskName" id="taskName" required>
+									</div>
+
+									<div class="form-group">
+										<label for="userName" class="form-control-label">负责人</label>
+										<select class="form-control boxed" name="userName" id="userName">
+											<% users.forEach(function(value){ %>
+											<option value="<%=value.id %>">
+												<%=value.name %>
+											</option>
+											<% });%>
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label for="startDate" class="form-control-label">开始日期</label>
+										<input type="text" class="form-control boxed" name="starttime" id="starttime" required>
+									</div>
+
+									<div class="form-group">
+										<label for="endDate" class="form-control-label">预计完成日期</label>
+										<input type="text" class="form-control boxed" name="endtime" id="endtime" required>
+									</div>
+
+									<div class="form-group">
+										<label for="taskType" class="form-control-label">任务类型</label>
+										<select class="form-control boxed" name="taskType" id="taskType">
+
+										</select>
+									</div>
+
+									<div class="form-group">
+										<label for="taskLink" class="form-control-label">链接</label>
+										<input type="text" class="form-control boxed" name="taskLink" id="taskLink">
+									</div>
+									<!--<div class="form-group">
+										<label for="taskLink" class="form-control-label">任务描述</label>
+										<textarea rows="4" class="form-control" name="taskDesc" id="taskDesc"></textarea>
+									</div>-->
+									<div class="form-group">
+										<button id="addTask" class="btn btn-primary btn-lg btn-block">提交</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</section>
+				</article>
+				<% include layout/_footer %>
+			</div>
+		</div>
+		<script src="/admin-temp/js/vendor.js"></script>
+		<script src="/js/app.js"></script>
+		<script src="/js/moment-with-locales.js"></script>
+		<script src="/js/bootstrap-datetimepicker.js"></script>
+		<script src="/js/addtask.js"></script>
+	</body>
+
+</html>
